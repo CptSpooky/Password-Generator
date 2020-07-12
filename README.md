@@ -1,5 +1,5 @@
 # Password-Generator
-This project was ver
+The goal of this project was to create a password generator with certain criteria. It was probably the most difficult project I've ever made , I've easily spent over 40 hours on it, but I've learned a lot! Heres my breakdown:
 
 ## Variables
 The first thing that came to mind was creating variables that could store the character strings that'll be referenced later when generating the password. We could use an array here, but opted using this method to make things a little cleaner. Onced I had defined those variables, I also needed to store the generated password with the 'passAccum' variable, which accumulates characters for the password, and the 'accept' variable which stores all possible characters the user agrees to. Then I had to create a varible to store the input for the password's length, and check it to make sure it met certain conditions. In this case, it needed to be between 8-128 characters; if the user inputs something that wasn't a number or wasn't between 8-128, then the program will continue to prompt until an acceptable input is gathered.
