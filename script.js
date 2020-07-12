@@ -1,20 +1,32 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+// Password function
 function generatePassword(){
-  var accum = "";
-  var length = 8;
-  var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var lower = upper.toLowerCase();
-  var numbers = "0123456789";
-  var special = " !\"#$%&’()*+,-./:;<=>?@[\\]^_`{|}~";
-  var accepts = "";
+  // Character constants
+  const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const lower = upper.toLowerCase();
+  const numbers = "0123456789";
+  const special = " !\"#$%&’()*+,-./:;<=>?@[\\]^_`{|}~";
+  
+  // Accumulator variables
+  let passAccum = "";
+  let accepts = "";
 
-  var accUpper = confirm("do you want uppercase?");
-  var accLower = confirm("do you want lowercase?");
-  var accSpecial = confirm("do you want special characters?");
-  var accNumber = confirm("do you want numbers?");
+  // Password length check
+  let passLength = 0;
+  do {
+    passLength = prompt("How long do you want the password to be? You must enter a number no less than 8 and no greater than 128.");
+    passLength = parseInt(passLength);
+  } while (passLength < 8 || passLength > 128 || isNaN(passLength));
 
+  // Question booleans
+  const accUpper = confirm("do you want uppercase?");
+  const accLower = confirm("do you want lowercase?");
+  const accSpecial = confirm("do you want special characters?");
+  const accNumber = confirm("do you want numbers?");
+
+  // Build accepted characters string
   if (accUpper){
     accepts += upper;
   }
@@ -31,24 +43,25 @@ function generatePassword(){
     accepts += numbers;
   }
   
-  do {
-    accum = "";
-    for (var i = 0; i < length; i++) {
-      var rnd = Math.floor(Math.random() * Math.floor(accepts.length));
-      accum += accepts.charAt(rnd);
+  do { // Generate new password string
+    passAccum = ""; // Reset the accumulator
+    for (let i = 0; i < passLength; i++) {
+      let rnd = Math.floor(Math.random() * accepts.length); // Create new random character index value
+      passAccum += accepts.charAt(rnd); // Append new character to working string
     }
-  } while(
-      (accNumber && !hasAny(accum, numbers))
-      || (accSpecial && !hasAny(accum, special))
-      || (accUpper && !hasAny(accum, upper))
-      || (accLower && !hasAny(accum, lower))
-    );
-  
-  return accum;
+  } while( // Password criteria check
+      (accNumber && !hasAny(passAccum, numbers)) // Check for numbers if applicable 
+      || (accSpecial && !hasAny(passAccum, special)) // Check for special characters if applicable 
+      || (accUpper && !hasAny(passAccum, upper)) // Check for upper case characters if applicable 
+      || (accLower && !hasAny(passAccum, lower)) // Check for lower case characters if applicable 
+    ); // If the criteria is not met, then try to generate a new password
+
+  return passAccum;
 }
 
+// Returns true if characters in parameter anyOf are found in parameter str. False otherwise
 function hasAny(str, anyOf){
-  for(var i = 0; i < anyOf.length; i++){
+  for(let i = 0; i < anyOf.length; i++){
     if(str.includes(anyOf.charAt(i))){
       return true;
     }
