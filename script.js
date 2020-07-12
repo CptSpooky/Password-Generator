@@ -21,10 +21,10 @@ function generatePassword(){
   } while (passLength < 8 || passLength > 128 || isNaN(passLength));
 
   // Question booleans
-  const accUpper = confirm("do you want uppercase?");
-  const accLower = confirm("do you want lowercase?");
-  const accSpecial = confirm("do you want special characters?");
-  const accNumber = confirm("do you want numbers?");
+  const accUpper = confirm("Do you want uppercase characters?");
+  const accLower = confirm("Do you want lowercase characters?");
+  const accSpecial = confirm("Do you want special characters?");
+  const accNumber = confirm("Do you want numbers?");
 
   // Build accepted characters string
   if (accUpper){
@@ -52,8 +52,8 @@ function generatePassword(){
   } while( // Password criteria check
       (accNumber && !hasAny(passAccum, numbers)) // Check for numbers if applicable 
       || (accSpecial && !hasAny(passAccum, special)) // Check for special characters if applicable 
-      || (accUpper && !hasAny(passAccum, upper)) // Check for upper case characters if applicable 
-      || (accLower && !hasAny(passAccum, lower)) // Check for lower case characters if applicable 
+      || (accUpper && !hasAny(passAccum, upper)) // Check for uppercase characters if applicable 
+      || (accLower && !hasAny(passAccum, lower)) // Check for lowercase characters if applicable 
     ); // If the criteria is not met, then try to generate a new password
 
   return passAccum;
