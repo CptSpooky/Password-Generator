@@ -20,7 +20,7 @@ function generatePassword(){
     passLength = parseInt(passLength);
   } while (passLength < 8 || passLength > 128 || isNaN(passLength));
 
-  // Question booleans
+  // Response booleans
   const accUpper = confirm("Do you want uppercase characters?");
   const accLower = confirm("Do you want lowercase characters?");
   const accSpecial = confirm("Do you want special characters?");
@@ -50,7 +50,7 @@ function generatePassword(){
   
   do { // Generate new password string
     passAccum = ""; // Reset the accumulator
-    for (let i = 0; i < passLength; i++) {
+    for (let i = 0; i < passLength; i++) { // Runs until password length is met
       let rnd = Math.floor(Math.random() * accepts.length); // Create new random character index value
       passAccum += accepts.charAt(rnd); // Append new character to working string
     }
