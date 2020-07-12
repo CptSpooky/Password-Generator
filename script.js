@@ -26,6 +26,11 @@ function generatePassword(){
   const accSpecial = confirm("Do you want special characters?");
   const accNumber = confirm("Do you want numbers?");
 
+  // Checks if user is attempting to create a password with no characters
+  if ((accUpper || accLower || accSpecial || accNumber) == false){
+      return "No usable characters available, please re-run generator and include at least one character set option.";
+  }
+
   // Build accepted characters string
   if (accUpper){
     accepts += upper;
